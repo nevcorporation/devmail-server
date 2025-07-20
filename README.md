@@ -1,2 +1,0 @@
-# devmail-server
-For devmail

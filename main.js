@@ -24,13 +24,6 @@ const inbox = [
             }
         ]
     },
-    {
-        "user":"sigma@devmail.com",
-        "password":"real",
-        "emails":[
-
-        ]
-    }
 ]
 
 const appInformation = {
