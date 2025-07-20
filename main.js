@@ -40,7 +40,7 @@ app.get('/info', (req, res) => {
 
 
 app.post('/inbox', (req, res) => {
-    const {to, subject, message, id, from, date} = req.body;
+    const {to, subject, message, id, from, date, user, password} = req.body;
     const newEmail = {
         "subject":subject,
         "id":id,
@@ -50,14 +50,42 @@ app.post('/inbox', (req, res) => {
         "date":date,
         "vs":"1"
     }
+
+
     for(const u of inbox) {
         if(u.user === to) {
             u.emails.push(newEmail)
+        } else {
+
         }
     }
 
     res.send(200);
 })
+
+
+app.post('/signup', (req, res) => {
+    const {user, password} = req.body;
+
+    const existingUser = inbox.find(u => u.user === user);
+
+    if(existingUser) {
+        res.send(400)
+    }
+
+
+    inbox.push({
+        "user": user,
+        "password": password,
+        "emails": []
+    })
+
+    res.send(200)
+})
+
+
+
+
 
 
 app.post('/info', (req, res) => {
