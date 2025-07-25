@@ -11,6 +11,7 @@ app.use(express.json({ limit: '100mb' }));
 const inbox = [
     {
         "user":"ronan@admin.com",
+        "name":"ronan",
         "password":"rickastley12-!",
         "emails": [
             {
@@ -40,7 +41,7 @@ app.get('/info', (req, res) => {
 
 
 app.post('/inbox', (req, res) => {
-    const {to, subject, message, id, from, date, user, password} = req.body;
+    const {to, subject, message, id, from, date} = req.body;
     const newEmail = {
         "subject":subject,
         "id":id,
@@ -65,7 +66,7 @@ app.post('/inbox', (req, res) => {
 
 
 app.post('/signup', (req, res) => {
-    const {user, password} = req.body;
+    const {user, password, name} = req.body;
 
     const existingUser = inbox.find(u => u.user === user);
 
@@ -76,6 +77,7 @@ app.post('/signup', (req, res) => {
 
     inbox.push({
         "user": user,
+        "name": name,
         "password": password,
         "emails": []
     })
